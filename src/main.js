@@ -1,5 +1,5 @@
-import { Cliente } from "./cliente";
-import { Impuestos } from "./impuestos";
+import { Cliente } from "./cliente.js";
+import { Impuestos } from "./impuestos.js";
 
 let nombre = "cliente1";
 let montoBrutoAnual = 1000000;

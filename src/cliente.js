@@ -1,4 +1,4 @@
-import { Impuestos } from "./impuestos";
+import { Impuestos } from "./impuestos.js";
 
 export class Cliente {
   constructor(nombre) {
@@ -20,13 +20,22 @@ export class Cliente {
     this._impuesto = value;
   }
   calcularImpuesto() {
-    if (!this._impuesto) throw new Error("No sé ha definido el impuesto aún");
+    if (!this._impuesto) return("No sé ha definido el impuesto aún");
 
     const { montoBrutoAnual, deducciones } = this._impuesto;
-    if (deducciones > montoBrutoAnual) {
-      return "Queda exonerado de Impuestos Anuales";
+    
+    if (montoBrutoAnual < 0) {
+      return("El monto bruto anual no puede ser negativo");
     }
 
-    return (montoBrutoAnual - deducciones) * 0.21;
+    if (deducciones < 0) {
+      return("Las deducciones no puede ser negativo");
+    }
+    
+    if (deducciones > montoBrutoAnual) {
+      return "El cliente: " + this._nombre + " queda exonerado de Impuestos Anuales";
+    }
+
+    return "El cliente: " + this._nombre + " debe pagar un impuesto igual a: " + (montoBrutoAnual - deducciones) * 0.21;
   }
 }
