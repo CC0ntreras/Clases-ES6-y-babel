@@ -24,6 +24,10 @@ export class Cliente {
 
     const { montoBrutoAnual, deducciones } = this._impuesto;
     
+    if (montoBrutoAnual < 0 && deducciones < 0) {
+      return("Monto bruto anual y las deducciones no pueden ser negativos");
+    }
+
     if (montoBrutoAnual < 0) {
       return("El monto bruto anual no puede ser negativo");
     }
